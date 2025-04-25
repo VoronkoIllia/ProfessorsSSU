@@ -1,0 +1,1 @@
+sqlite3 professors.db < professors-init.sql
