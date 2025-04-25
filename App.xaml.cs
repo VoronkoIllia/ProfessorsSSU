@@ -19,13 +19,14 @@ namespace ProfessorsSSU
 
         protected void OnStartup(object sender, StartupEventArgs e)
         {
-            //base.OnStartup(e);
             var serviceCollection = new ServiceCollection();
             ConfigureServices(serviceCollection);
 
             _serviceProvider = serviceCollection.BuildServiceProvider();
 
-            var mainWindow = _serviceProvider.GetRequiredService<MainWindow>();
+            var mainWindow = _serviceProvider.GetRequiredService<InfoProfessorForm>();
+            //var loginForm = _serviceProvider.GetRequiredService<LogInForm>();
+            //var editProfessorForm = _serviceProvider.GetRequiredService<EditProfessorForm>();
             mainWindow.Show();
         }
 
@@ -34,14 +35,16 @@ namespace ProfessorsSSU
             // Configure Logging
             services.AddLogging();
 
+            // Register DB Context
             services.AddDbContext<AppDbContext>(options => options.UseSqlite("Data Source=professors.db"));
+
             // Register Services
             services.AddSingleton<IProfessorService, ProfessorService>();
 
-            //// Register ViewModels
-            //services.AddSingleton<IMainViewModel, MainViewModel>();
             // Register Views
-            services.AddSingleton<MainWindow>();
+            services.AddSingleton<InfoProfessorForm>();
+            //services.AddSingleton<LogInForm>();
+            //services.AddSingleton<EditProfessorForm>();
         }
 
         private void OnExit(object sender, ExitEventArgs e)
