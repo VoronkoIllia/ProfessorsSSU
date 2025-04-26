@@ -4,7 +4,7 @@
 ## Інструменти, які потрібно встановити для роботи
 
 * Встановити глобально нструмент dotnet-ef:
-	<pre>```bash dotnet tool install --global dotnet-ef```</pre>
+	```bash dotnet tool install --global dotnet-ef```
 * Встановити на свій ПК СУБД SQLite з консольними ынструментами до неї
 
 
@@ -21,8 +21,8 @@
 ## Алгоритм дій для створення БД додатку
 
 1. Створити файл БД за допомогою міграції:
-	<pre>```bash dotnet ef database update```</pre>
+	```bash dotnet ef database update```
 2. Заповнити БД початковими даними, використовуючи скрипт `reset-database.bat`:
-	<pre>```bash .\reset-database.bat```</pre>
+	```bash .\reset-database.bat```
 3. Скопіювати отриманий файл БД до директорій з скомпільованою програмою, використовуючи скрипт `copy-database-to-exe.bat`:
-	<pre>```bash .\copy-database-to-exe.bat```</pre>
+	```bash .\copy-database-to-exe.bat```
