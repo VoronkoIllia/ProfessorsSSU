@@ -36,7 +36,7 @@ namespace ProfessorsSSU
             services.AddLogging();
 
             // Register DB Context
-            services.AddDbContext<AppDbContext>(options => options.UseSqlite("Data Source=professors.db"));
+            services.AddDbContext<AppDbContext>();
 
             // Register Services
             services.AddSingleton<IProfessorService, ProfessorService>();

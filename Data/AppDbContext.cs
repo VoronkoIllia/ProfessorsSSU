@@ -11,12 +11,10 @@ namespace ProfessorsSSU.Data
 {
     public class AppDbContext : DbContext
     {
-        public AppDbContext(DbContextOptions<AppDbContext> options)
-        : base(options) { }
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //{
-        //    optionsBuilder.UseSqlite("Data Source=professors.db");
-        //}
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlite("Data Source=professors.db");
+        }
 
         public DbSet<Editor> Editors { get; set; }
         public DbSet<Professor> Professors { get; set; }
