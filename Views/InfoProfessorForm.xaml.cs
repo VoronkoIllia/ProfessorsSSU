@@ -19,7 +19,8 @@ namespace ProfessorsSSU
     /// </summary>
     public partial class InfoProfessorForm : Window
     {
-        private IProfessorService _professorService;
+        private readonly IProfessorService _professorService;
+        private readonly IAuthService _authService;
 
         private ObservableCollection<ComboBoxItem> hasAcademicRankOptions = 
             [
@@ -32,10 +33,13 @@ namespace ProfessorsSSU
             public required string Display { get; set; }
             public string? Value { get; set; }
         }
-        public InfoProfessorForm(IProfessorService professorService)
+        public InfoProfessorForm(IProfessorService professorService, IAuthService authService)
         {
             InitializeComponent();
-            _professorService = professorService;
+
+            this._professorService = professorService;
+            this._authService = authService;
+
             this.HasAcademicRankComboBox.ItemsSource = hasAcademicRankOptions;
             this.HasAcademicRankComboBox.SelectedValue = null;
 
@@ -78,7 +82,14 @@ namespace ProfessorsSSU
 
         private void RefreshDataGrid() 
         {
-            this.ProfessorListDG.ItemsSource = _professorService.SelectProfessors();
+            try 
+            { 
+                this.ProfessorListDG.ItemsSource = _professorService.SelectProfessors();
+            } 
+            catch 
+            {
+                MessageBox.Show("Файл professors.db відсутній або пошкоджений", "Помилка!", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }
