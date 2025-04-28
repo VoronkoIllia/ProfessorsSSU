@@ -40,6 +40,7 @@ namespace ProfessorsSSU
 
             // Register Services
             services.AddSingleton<IProfessorService, ProfessorService>();
+            services.AddSingleton<IAuthService, AuthService>();
 
             // Register Views
             services.AddSingleton<InfoProfessorForm>();
