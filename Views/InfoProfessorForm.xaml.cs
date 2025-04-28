@@ -55,7 +55,7 @@ namespace ProfessorsSSU
 
         private void AuthButton_Click(object sender, RoutedEventArgs e)
         {
-            LogInForm loginForm = new LogInForm();
+            LogInForm loginForm = new LogInForm(_authService);
             loginForm.Show();
         }
 
@@ -67,9 +67,27 @@ namespace ProfessorsSSU
 
         private void EditProfessorButton_Click(object sender, RoutedEventArgs e)
         {
-            Professor p = (Professor)this.ProfessorListDG.SelectedItem;
             EditProfessorForm editProfessorForm = new EditProfessorForm(_professorService, (Professor)this.ProfessorListDG.SelectedItem);
             editProfessorForm.Show();
+        }
+
+        private void DeleteProfessorButton_Click(object sender, RoutedEventArgs e)
+        {
+            Professor deletingProfessor = (Professor)this.ProfessorListDG.SelectedItem;
+            try 
+            {
+                bool isDeletingSuccessfully = _professorService.DeleteProfessor(deletingProfessor.Id);
+                if (!isDeletingSuccessfully)
+                { 
+                    MessageBox.Show("Видалення неможливе! Викладач відсутній в БД.", "Помилка", MessageBoxButton.OKCancel, MessageBoxImage.Warning);
+                }
+            }
+            catch 
+            {
+                MessageBox.Show("Файл professors.db переміщено або пожкоджено. Помістіть цей файл у директорію з додатком.", "Помилка", MessageBoxButton.OKCancel, MessageBoxImage.Warning);
+                return;
+            }
+            RefreshDataGrid();
         }
 
         //потрібно для того, щоб користувач випадково не натиснув Редагувати чи Видалити
@@ -88,8 +106,9 @@ namespace ProfessorsSSU
             } 
             catch 
             {
-                MessageBox.Show("Файл professors.db відсутній або пошкоджений", "Помилка!", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Файл professors.db переміщено або пожкоджено. Помістіть цей файл у директорію з додатком.", "Помилка!", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
     }
 }

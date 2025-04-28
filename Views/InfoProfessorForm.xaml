@@ -34,7 +34,7 @@
         <DockPanel LastChildFill="False" Background="Gray" HorizontalAlignment="Right" Width="200" Margin="0,80,0,0" >
             <Button  x:Name="AddProfessorButton" Content="Додати" FontSize="16" DockPanel.Dock="Top" Height="40" Width="140" Margin ="30,20,30,0" Click="AddProfessorButton_Click"/>
             <Button x:Name="EditProfessorButton" Content="Редагувати" FontSize="16" DockPanel.Dock="Top" Height="40" Margin ="30,20,30,0" Click="EditProfessorButton_Click"/>
-            <Button x:Name="DeleteProfessorButton" Content="Видалити" FontSize="16" DockPanel.Dock="Top" Height="40" Width="140" Margin ="30,20,30,0"/>
+            <Button x:Name="DeleteProfessorButton" Content="Видалити" FontSize="16" DockPanel.Dock="Top" Height="40" Width="140" Margin ="30,20,30,0" Click="DeleteProfessorButton_Click"/>
             <Button Content="Зберегти у Word" FontSize="16" DockPanel.Dock="Bottom" Height="40" Width="140" Margin ="30,0,30,30"/>
         </DockPanel>
         <DockPanel Width="Auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,160,200,0">
