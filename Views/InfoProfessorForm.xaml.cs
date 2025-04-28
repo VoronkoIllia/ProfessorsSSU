@@ -38,20 +38,14 @@ namespace ProfessorsSSU
             _professorService = professorService;
             this.HasAcademicRankComboBox.ItemsSource = hasAcademicRankOptions;
             this.HasAcademicRankComboBox.SelectedValue = null;
+
+            this.EditProfessorButton.IsEnabled = false;
+            this.DeleteProfessorButton.IsEnabled = false;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            //try {
-            //List<Professor> professors = new();
-            //professors.Add(new Professor(){Id = 1, Surname = "Vasff", BirthYear = 2001, EmploymentYear = 2023, AcademicRank="hui", AcademicDegree = "AAAA", DepartmentName = "dsdsdsdd", Position = "dsdsdsds" });
-            ProfessorListDG.ItemsSource = _professorService.SelectProfessors();
-            //ProfessorListDG.ItemsSource = professors;
-            //}
-            //catch(Exception ex)
-            //{
-            //    Console.WriteLine(ex.Message);
-            //}
+            RefreshDataGrid();
         }
 
 
@@ -63,14 +57,28 @@ namespace ProfessorsSSU
 
         private void AddProfessorButton_Click(object sender, RoutedEventArgs e)
         {
-            EditProfessorForm editProfessorForm = new EditProfessorForm();
+            EditProfessorForm editProfessorForm = new EditProfessorForm(_professorService);
             editProfessorForm.Show();
         }
 
         private void EditProfessorButton_Click(object sender, RoutedEventArgs e)
         {
-            EditProfessorForm editProfessorForm = new EditProfessorForm();
+            Professor p = (Professor)this.ProfessorListDG.SelectedItem;
+            EditProfessorForm editProfessorForm = new EditProfessorForm(_professorService, (Professor)this.ProfessorListDG.SelectedItem);
             editProfessorForm.Show();
+        }
+
+        //потрібно для того, щоб користувач випадково не натиснув Редагувати чи Видалити
+        //коли викладача ще не обрано
+        private void ProfessorListDG_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            this.EditProfessorButton.IsEnabled = this.ProfessorListDG.SelectedItem != null;
+            this.DeleteProfessorButton.IsEnabled = this.ProfessorListDG.SelectedItem != null;   
+        }
+
+        private void RefreshDataGrid() 
+        {
+            this.ProfessorListDG.ItemsSource = _professorService.SelectProfessors();
         }
     }
 }

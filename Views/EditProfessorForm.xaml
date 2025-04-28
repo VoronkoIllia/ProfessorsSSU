@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="EditProfessorForm" Height="650" Width="685">
     <Grid>
-        <Label Content="Дані про викладача" HorizontalAlignment="Center" Margin="0,82,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="Bold"/>
+        <Label x:Name="FormHeaderLabel" HorizontalAlignment="Center" Margin="0,82,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="Bold"/>
         <Label Content="Прізвище" HorizontalAlignment="Left" Margin="60,166,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" HorizontalContentAlignment="Right" Width="189"/>
         <Label Content="Кафедра" HorizontalAlignment="Left" Margin="60,214,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" HorizontalContentAlignment="Right"  Width="189"/>
         <Label Content="Рік народження" HorizontalAlignment="Left" Margin="60,262,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" HorizontalContentAlignment="Right"  Width="189"/>

@@ -10,6 +10,6 @@ namespace ProfessorsSSU.Interfaces
 {
     public interface IProfessorService
     {
-        List<Professor> SelectProfessors();
+        List<Professor> SelectProfessors(bool? hasAcademicRank = null, bool onlyPensioners = false);
     }
 }

@@ -17,7 +17,7 @@ namespace ProfessorsSSU.Services
             _appDbContext = appDbContext;
         }
 
-        public List<Professor> SelectProfessors()
+        public List<Professor> SelectProfessors(bool? hasAcademicRank = null, bool onlyPensioners = false) 
         {
             return _appDbContext.Professors.ToList();
         }
