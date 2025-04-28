@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProfessorsSSU.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,15 +15,19 @@ using System.Windows.Shapes;
 
 namespace ProfessorsSSU
 {
-    /// <summary>
-    /// Логика взаимодействия для LogInForm.xaml
-    /// </summary>
     public partial class LogInForm : Window
     {
-       
-        public LogInForm()
+        private readonly IAuthService _authService;
+
+        public LogInForm(IAuthService authService)
         {
             InitializeComponent();
+            this._authService = authService;
+        }
+
+        private void CancelButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

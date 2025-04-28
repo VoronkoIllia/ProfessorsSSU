@@ -14,6 +14,6 @@
         <PasswordBox x:Name="PasswordTextBox" BorderThickness="2" HorizontalAlignment="Center" Margin="44,221,0,0" VerticalAlignment="Top" Width="230" Height="27"/>
 
         <Button Content="ОК" HorizontalAlignment="Left" Margin="160,309,0,0" VerticalAlignment="Top" Width="60" Height="30" FontSize="16"/>
-        <Button Content="СКАСУВАТИ" HorizontalAlignment="Left" Margin="259,309,0,0" VerticalAlignment="Top" Width="120" Height="30" FontSize="16"/>
+        <Button Content="СКАСУВАТИ" HorizontalAlignment="Left" Margin="259,309,0,0" VerticalAlignment="Top" Width="120" Height="30" FontSize="16" Click="CancelButton_Click"/>
     </Grid>
 </Window>
