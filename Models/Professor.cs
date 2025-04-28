@@ -8,7 +8,7 @@ namespace ProfessorsSSU.Models
 {
     public class Professor
     {
-        public int? Id { get; set; }
+        public int Id { get; set; }
         public required string Surname { get; set; }
         public required string DepartmentName { get; set; }
         public int BirthYear { get; set; }
