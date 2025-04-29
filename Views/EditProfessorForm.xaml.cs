@@ -56,5 +56,26 @@ namespace ProfessorsSSU
             }
             
         }
+
+        private bool ValidateFields() 
+        {
+            return !string.IsNullOrEmpty(this.SurnameTextBox.Text.Trim()) && !string.IsNullOrEmpty(this.SurnameTextBox.Text.Trim())
+                    && this.BirthYearTextBox.Text.Trim().All(char.IsDigit) && this.EmploymentYearTextBox.Text.Trim().All(char.IsDigit)
+                    && !string.IsNullOrEmpty(this.PositionTextBox.Text.Trim()) && this.AcademicDegreeComboBox.SelectedItem != null
+                    && this.AcademicRankComboBox.SelectedItem != null;
+        }
+
+        private void SaveButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (!ValidateFields())
+            {
+                // TODO: реалізувати сценарій на випадок, якщо поля не прошли валідацію
+            }
+        }
+
+        private void CancelButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

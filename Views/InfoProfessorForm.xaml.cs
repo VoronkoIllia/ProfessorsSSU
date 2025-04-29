@@ -102,7 +102,17 @@ namespace ProfessorsSSU
         {
             try 
             { 
-                this.ProfessorListDG.ItemsSource = _professorService.SelectProfessors();
+                List<Professor> professors = _professorService.SelectProfessors();
+                this.ProfessorListDG.ItemsSource = professors;
+                if (professors.Count == 0)
+                {
+                    this.MessageAboutData.Visibility = Visibility.Visible;
+                    this.MessageAboutData.Content = "Даних про викладачів поки що немає";
+                }
+                else 
+                {
+                    this.MessageAboutData.Visibility = Visibility.Hidden;
+                }
             } 
             catch 
             {

@@ -22,7 +22,7 @@
         <TextBox x:Name="PositionTextBox" BorderThickness="2" HorizontalAlignment="Left" Margin="285,362,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="230" Height="27"/>
         <ComboBox x:Name="AcademicDegreeComboBox" IsEditable="True" Text="--- не обрано ---" IsReadOnly="True" HorizontalAlignment="Left" Margin="285,410,0,0" VerticalAlignment="Top" Width="230" Height="27"/>
         <ComboBox x:Name="AcademicRankComboBox" IsEditable="True" Text="--- не обрано ---" IsReadOnly="True" HorizontalAlignment="Left" Margin="285,458,0,0" VerticalAlignment="Top" Width="230" Height="27"/>
-        <Button Content="ЗБЕРЕГТИ" HorizontalAlignment="Left" Margin="200,542,0,0" VerticalAlignment="Top" Width="100" Height="30" FontSize="16"/>
-        <Button Content="СКАСУВАТИ" HorizontalAlignment="Left" Margin="320,542,0,0" VerticalAlignment="Top" Width="120" Height="30" FontSize="16"/>
+        <Button Content="ЗБЕРЕГТИ" HorizontalAlignment="Left" Margin="200,542,0,0" VerticalAlignment="Top" Width="100" Height="30" FontSize="16" Click="SaveButton_Click"/>
+        <Button Content="СКАСУВАТИ" HorizontalAlignment="Left" Margin="320,542,0,0" VerticalAlignment="Top" Width="120" Height="30" FontSize="16" Click="CancelButton_Click"/>
     </Grid>
 </Window>

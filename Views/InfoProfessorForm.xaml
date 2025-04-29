@@ -37,9 +37,9 @@
             <Button x:Name="DeleteProfessorButton" Content="Видалити" FontSize="16" DockPanel.Dock="Top" Height="40" Width="140" Margin ="30,20,30,0" Click="DeleteProfessorButton_Click"/>
             <Button Content="Зберегти у Word" FontSize="16" DockPanel.Dock="Bottom" Height="40" Width="140" Margin ="30,0,30,30"/>
         </DockPanel>
-        <DockPanel Width="Auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,160,200,0">
+        <DockPanel Background="#FFF0F0F0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,160,200,0">
 
-            <DataGrid x:Name="ProfessorListDG" CanUserAddRows="False" HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch" AutoGenerateColumns="False" Height="Auto" SelectionChanged="ProfessorListDG_SelectionChanged">
+            <DataGrid x:Name="ProfessorListDG" DockPanel.Dock="Top" CanUserAddRows="False" HorizontalAlignment="Stretch" Margin="0,0,0,0" AutoGenerateColumns="False" Height="Auto" SelectionChanged="ProfessorListDG_SelectionChanged">
                 <DataGrid.Columns >
                     <DataGridTextColumn Header = "ID" Binding = "{Binding Id}"
 Width="Auto"/>
@@ -59,7 +59,7 @@ BirthYear}" Width="Auto"/>
 "{Binding AcademicRank, TargetNullValue='немає'}" Width="Auto"/>
                 </DataGrid.Columns >
             </DataGrid>
+            <Label x:Name="MessageAboutData" DockPanel.Dock="Top" Margin="16,16,0,0" FontSize="16"/>
         </DockPanel>
-
     </Grid>
 </Window>
