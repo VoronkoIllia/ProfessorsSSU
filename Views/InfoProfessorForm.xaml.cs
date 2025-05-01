@@ -1,14 +1,6 @@
 ﻿using ProfessorsSSU.Interfaces;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using ProfessorsSSU.Models;
 using System.Collections.ObjectModel;
 
@@ -74,6 +66,14 @@ namespace ProfessorsSSU
         private void DeleteProfessorButton_Click(object sender, RoutedEventArgs e)
         {
             Professor deletingProfessor = (Professor)this.ProfessorListDG.SelectedItem;
+            MessageBoxResult result = MessageBox.Show($"Ви точно бажаєте видалити викладача {deletingProfessor.Surname}?", "Підтвердження", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            
+            // якщо користувач натиснув "Ні" - завершуємо роботу функції
+            if (result == MessageBoxResult.No)
+            {
+                return;
+            }
+            
             try 
             {
                 bool isDeletingSuccessfully = _professorService.DeleteProfessor(deletingProfessor.Id);
