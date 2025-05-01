@@ -61,14 +61,14 @@ namespace ProfessorsSSU
 
         private void AddProfessorButton_Click(object sender, RoutedEventArgs e)
         {
-            EditProfessorForm editProfessorForm = new EditProfessorForm(_professorService);
-            editProfessorForm.Show();
+            EditProfessorForm editProfessorForm = new EditProfessorForm(_professorService, this.RefreshDataGrid);
+            editProfessorForm.ShowDialog();
         }
 
         private void EditProfessorButton_Click(object sender, RoutedEventArgs e)
         {
-            EditProfessorForm editProfessorForm = new EditProfessorForm(_professorService, (Professor)this.ProfessorListDG.SelectedItem);
-            editProfessorForm.Show();
+            EditProfessorForm editProfessorForm = new EditProfessorForm(_professorService, this.RefreshDataGrid, (Professor)this.ProfessorListDG.SelectedItem);
+            editProfessorForm.ShowDialog();
         }
 
         private void DeleteProfessorButton_Click(object sender, RoutedEventArgs e)

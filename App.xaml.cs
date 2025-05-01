@@ -25,8 +25,6 @@ namespace ProfessorsSSU
             _serviceProvider = serviceCollection.BuildServiceProvider();
 
             var mainWindow = _serviceProvider.GetRequiredService<InfoProfessorForm>();
-            //var loginForm = _serviceProvider.GetRequiredService<LogInForm>();
-            //var editProfessorForm = _serviceProvider.GetRequiredService<EditProfessorForm>();
             mainWindow.Show();
         }
 
@@ -44,8 +42,7 @@ namespace ProfessorsSSU
 
             // Register Views
             services.AddSingleton<InfoProfessorForm>();
-            //services.AddSingleton<LogInForm>();
-            //services.AddSingleton<EditProfessorForm>();
+            
         }
 
         private void OnExit(object sender, ExitEventArgs e)
