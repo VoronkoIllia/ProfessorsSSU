@@ -1,17 +1,11 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using System.Configuration;
-using System.Data;
 using System.Windows;
 using ProfessorsSSU.Data;
 using ProfessorsSSU.Interfaces;
 using ProfessorsSSU.Services;
-using Microsoft.EntityFrameworkCore;
 
 namespace ProfessorsSSU
 {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
     public partial class App : Application
     {
 
