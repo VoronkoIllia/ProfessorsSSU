@@ -35,7 +35,7 @@ CREATE TABLE [Editors] (
 INSERT INTO [Professors] ([Id],[Surname],[DepartmentName],[BirthYear],[EmploymentYear],[Position],[AcademicDegree],[AcademicRank]) VALUES (
 1,'Шевченко','Кафедра інформатики',1975,2000,'Професор','Доктор наук','Професор');
 INSERT INTO [Professors] ([Id],[Surname],[DepartmentName],[BirthYear],[EmploymentYear],[Position],[AcademicDegree],[AcademicRank]) VALUES (
-2,'Ковальчук','Кафедра математики',1980,2005,'Доцент','Доктор філософії','Доцент');
+2,'Ковальчук','Кафедра математики',1960,2005,'Доцент','Доктор філософії','Доцент');
 INSERT INTO [Professors] ([Id],[Surname],[DepartmentName],[BirthYear],[EmploymentYear],[Position],[AcademicDegree],[AcademicRank]) VALUES (
 3,'Бондаренко','Кафедра фізики',1978,2003,'Доцент','Доктор філософії',NULL);
 INSERT INTO [Professors] ([Id],[Surname],[DepartmentName],[BirthYear],[EmploymentYear],[Position],[AcademicDegree],[AcademicRank]) VALUES (
@@ -47,7 +47,7 @@ INSERT INTO [Professors] ([Id],[Surname],[DepartmentName],[BirthYear],[Employmen
 INSERT INTO [Professors] ([Id],[Surname],[DepartmentName],[BirthYear],[EmploymentYear],[Position],[AcademicDegree],[AcademicRank]) VALUES (
 7,'Сидоренко','Кафедра філології',1977,2002,'Професор','Доктор наук','Професор');
 INSERT INTO [Professors] ([Id],[Surname],[DepartmentName],[BirthYear],[EmploymentYear],[Position],[AcademicDegree],[AcademicRank]) VALUES (
-8,'Литвиненко','Кафедра історії',1983,2008,'Старший викладач','Доктор філософії',NULL);
+8,'Литвиненко','Кафедра історії',1958,2008,'Старший викладач','Доктор філософії',NULL);
 INSERT INTO [Professors] ([Id],[Surname],[DepartmentName],[BirthYear],[EmploymentYear],[Position],[AcademicDegree],[AcademicRank]) VALUES (
 9,'Поліщук','Кафедра психології',1981,2006,'Доцент','Доктор філософії','Доцент');
 INSERT INTO [Professors] ([Id],[Surname],[DepartmentName],[BirthYear],[EmploymentYear],[Position],[AcademicDegree],[AcademicRank]) VALUES (
