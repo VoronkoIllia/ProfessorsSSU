@@ -16,6 +16,8 @@ namespace ProfessorsSSU
 
         private bool isEditorAuthorized;
 
+        private List<Professor> FilteredProfessors; // список з відібраними викладачами
+
         private ObservableCollection<ComboBoxItem> hasAcademicRankOptions = 
             [
                 new ComboBoxItem{Display = "Усі", Value = null},
@@ -132,9 +134,10 @@ namespace ProfessorsSSU
             try 
             {
                 //виконуємо фільтрацію
-                List<Professor> professors = _professorService.SelectProfessors(hasAcademicRank, onlyPensioners);
-                this.ProfessorListDG.ItemsSource = professors;
-                if (professors.Count == 0)
+                this.FilteredProfessors = _professorService.SelectProfessors(hasAcademicRank, onlyPensioners);
+                this.ProfessorListDG.ItemsSource = this.FilteredProfessors;
+
+                if (this.FilteredProfessors.Count == 0)
                 {
                     // виводимо повідомлення у тому випадку
                     // коли потрібних викладачів немає в БД
