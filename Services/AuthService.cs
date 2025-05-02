@@ -7,11 +7,11 @@ namespace ProfessorsSSU.Services
     public class AuthService : IAuthService
     {
         private readonly AppDbContext _appDbContext;
+
         public AuthService(AppDbContext appDbContext) 
         {
             this._appDbContext = appDbContext;
         }
-
     
         public bool CheckIfEditorExists(Editor verifiedEditor)
         {

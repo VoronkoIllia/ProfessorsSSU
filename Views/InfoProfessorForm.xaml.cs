@@ -14,6 +14,8 @@ namespace ProfessorsSSU
         private readonly IProfessorService _professorService;
         private readonly IAuthService _authService;
 
+        private bool isEditorAuthorized;
+
         private ObservableCollection<ComboBoxItem> hasAcademicRankOptions = 
             [
                 new ComboBoxItem{Display = "Усі", Value = null},
@@ -29,6 +31,7 @@ namespace ProfessorsSSU
         {
             InitializeComponent();
 
+
             this._professorService = professorService;
             this._authService = authService;
 
@@ -37,6 +40,9 @@ namespace ProfessorsSSU
 
             this.EditProfessorButton.IsEnabled = false;
             this.DeleteProfessorButton.IsEnabled = false;
+
+            this.isEditorAuthorized = false;
+            this.HideEditorTools();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -52,8 +58,22 @@ namespace ProfessorsSSU
 
         private void AuthButton_Click(object sender, RoutedEventArgs e)
         {
-            LogInForm loginForm = new LogInForm(_authService);
-            loginForm.Show();
+            if (!isEditorAuthorized)
+            {
+                LogInForm loginForm = new LogInForm(_authService, () =>
+                    {
+                        this.isEditorAuthorized = true;
+                        this.ShowEditorTools();
+                    }
+                );
+                loginForm.ShowDialog();
+            }
+            else 
+            {
+                this.isEditorAuthorized = false;
+                this.HideEditorTools();
+                MessageBox.Show("Ви успішно вийшли з облікового запису!", "", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
         }
 
         private void AddProfessorButton_Click(object sender, RoutedEventArgs e)
@@ -100,7 +120,7 @@ namespace ProfessorsSSU
         private void ProfessorListDG_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             this.EditProfessorButton.IsEnabled = this.ProfessorListDG.SelectedItem != null;
-            this.DeleteProfessorButton.IsEnabled = this.ProfessorListDG.SelectedItem != null;   
+            this.DeleteProfessorButton.IsEnabled = this.ProfessorListDG.SelectedItem != null;      
         }
 
         private void RefreshDataGrid() 
@@ -109,7 +129,6 @@ namespace ProfessorsSSU
             bool? hasAcademicRank = ((ComboBoxItem)this.HasAcademicRankComboBox.SelectedItem).Value;
             bool onlyPensioners = (bool)this.OnlyPensionersCheckbox.IsChecked;
            
-            
             try 
             {
                 //виконуємо фільтрацію
@@ -121,11 +140,17 @@ namespace ProfessorsSSU
                     // коли потрібних викладачів немає в БД
                     this.MessageAboutData.Visibility = Visibility.Visible;
                     this.MessageAboutData.Content = "Даних про викладачів поки що немає";
+
+                    // блокуємо кнопку "Зберегти в Word"
+                    this.SaveToWordButton.IsEnabled = false;
                 }
                 else 
                 {
                     // ховаємо повідомлення, якщо знайдено хоча б одного потрібного викладача
                     this.MessageAboutData.Visibility = Visibility.Hidden;
+
+                    // розблоковуємо кнопку "Зберегти в Word"
+                    this.SaveToWordButton.IsEnabled = true;
                 }
             } 
             catch 
@@ -135,5 +160,20 @@ namespace ProfessorsSSU
             }
         }
 
+        private void ShowEditorTools() 
+        {
+            this.AuthButton.Content = "Розлогінитися";
+            this.AddProfessorButton.Visibility = Visibility.Visible;
+            this.EditProfessorButton.Visibility = Visibility.Visible;
+            this.DeleteProfessorButton.Visibility = Visibility.Visible;
+        }
+
+        private void HideEditorTools()
+        {
+            this.AuthButton.Content = "Авторизуватися";
+            this.AddProfessorButton.Visibility = Visibility.Hidden;
+            this.EditProfessorButton.Visibility = Visibility.Hidden;
+            this.DeleteProfessorButton.Visibility = Visibility.Hidden;
+        }
     }
 }
