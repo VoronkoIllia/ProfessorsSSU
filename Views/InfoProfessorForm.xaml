@@ -19,7 +19,8 @@
         </DockPanel>
         <DockPanel LastChildFill="False" Background="#C0C0C0" Height="80" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0,80,200,0">
             <Label Content="Вчене звання" DockPanel.Dock="Left" Margin="16,0,0,0" VerticalAlignment="Center" FontSize="16"/>
-            <ComboBox x:Name="HasAcademicRankComboBox" 
+            <ComboBox x:Name="HasAcademicRankComboBox"
+                      SelectionChanged="Filter_Changed"
                       SelectedValuePath="Value"
                       SelectedValue="{Binding SelectedValue}"
                       DisplayMemberPath="Display" 
@@ -29,7 +30,7 @@
                       Width="200" 
                       FontSize="16"/>
             <Label Content="Лише пенсіонери" DockPanel.Dock="Left" Margin="16,0,0,0" VerticalAlignment="Center" FontSize="16"/>
-            <CheckBox x:Name="OnlyPensionersCheckbox" DockPanel.Dock="Left" FontSize="16" Margin="4,0,0,0" VerticalAlignment="Center"/>
+            <CheckBox x:Name="OnlyPensionersCheckbox" DockPanel.Dock="Left" FontSize="16" Margin="4,0,0,0" VerticalAlignment="Center" Click="Filter_Changed"/>
         </DockPanel>
         <DockPanel LastChildFill="False" Background="Gray" HorizontalAlignment="Right" Width="200" Margin="0,80,0,0" >
             <Button  x:Name="AddProfessorButton" Content="Додати" FontSize="16" DockPanel.Dock="Top" Height="40" Width="140" Margin ="30,20,30,0" Click="AddProfessorButton_Click"/>

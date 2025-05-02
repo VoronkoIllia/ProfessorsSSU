@@ -17,13 +17,13 @@ namespace ProfessorsSSU
         private ObservableCollection<ComboBoxItem> hasAcademicRankOptions = 
             [
                 new ComboBoxItem{Display = "Усі", Value = null},
-                new ComboBoxItem{Display = "З вченим званням", Value = "True"},
-                new ComboBoxItem{Display = "Без вченого звання", Value = "False"},
+                new ComboBoxItem{Display = "З вченим званням", Value = true},
+                new ComboBoxItem{Display = "Без вченого звання", Value = false},
             ];
         private class ComboBoxItem 
         {
             public required string Display { get; set; }
-            public string? Value { get; set; }
+            public bool? Value { get; set; }
         }
         public InfoProfessorForm(IProfessorService professorService, IAuthService authService)
         {
@@ -41,9 +41,14 @@ namespace ProfessorsSSU
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            this.Title = "Інформація про викладачів";
             RefreshDataGrid();
         }
 
+        private void Filter_Changed(object sender, RoutedEventArgs e)
+        {
+            RefreshDataGrid();
+        }
 
         private void AuthButton_Click(object sender, RoutedEventArgs e)
         {
@@ -100,22 +105,32 @@ namespace ProfessorsSSU
 
         private void RefreshDataGrid() 
         {
+            // отримуємо параметри фільтрації
+            bool? hasAcademicRank = ((ComboBoxItem)this.HasAcademicRankComboBox.SelectedItem).Value;
+            bool onlyPensioners = (bool)this.OnlyPensionersCheckbox.IsChecked;
+           
+            
             try 
-            { 
-                List<Professor> professors = _professorService.SelectProfessors();
+            {
+                //виконуємо фільтрацію
+                List<Professor> professors = _professorService.SelectProfessors(hasAcademicRank, onlyPensioners);
                 this.ProfessorListDG.ItemsSource = professors;
                 if (professors.Count == 0)
                 {
+                    // виводимо повідомлення у тому випадку
+                    // коли потрібних викладачів немає в БД
                     this.MessageAboutData.Visibility = Visibility.Visible;
                     this.MessageAboutData.Content = "Даних про викладачів поки що немає";
                 }
                 else 
                 {
+                    // ховаємо повідомлення, якщо знайдено хоча б одного потрібного викладача
                     this.MessageAboutData.Visibility = Visibility.Hidden;
                 }
             } 
             catch 
             {
+                // у випадку помилки з'єднання виводимо відповідне повідомлення
                 MessageBox.Show("Файл professors.db переміщено або пожкоджено. Помістіть цей файл у директорію з додатком.", "Помилка!", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }

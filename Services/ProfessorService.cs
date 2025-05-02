@@ -6,6 +6,9 @@ namespace ProfessorsSSU.Services
 {
     public class ProfessorService : IProfessorService
     {
+
+        private readonly int RETIREMENT_AGE = 60; // нижня межа пенсійного віку
+
         private readonly AppDbContext _appDbContext;
         public ProfessorService(AppDbContext appDbContext) 
         {
@@ -14,7 +17,22 @@ namespace ProfessorsSSU.Services
 
         public List<Professor> SelectProfessors(bool? hasAcademicRank = null, bool onlyPensioners = false) 
         {
-            return _appDbContext.Professors.ToList();
+            int maxBirthYear = int.MaxValue;
+            if (onlyPensioners)
+            {
+                maxBirthYear = DateTime.Now.Year - RETIREMENT_AGE;
+            }
+
+            if (hasAcademicRank == true)
+            {
+                return _appDbContext.Professors.Where(p => p.BirthYear < maxBirthYear && p.AcademicRank != null).ToList();
+            }
+            else if (hasAcademicRank == false)
+            { 
+                return _appDbContext.Professors.Where(p => p.BirthYear < maxBirthYear && p.AcademicRank == null).ToList();
+            }
+
+            return _appDbContext.Professors.Where(p => p.BirthYear < maxBirthYear).ToList();
         }
 
         public void AddNewProfessor(Professor professor) 
