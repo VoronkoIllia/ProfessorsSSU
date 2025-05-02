@@ -21,6 +21,13 @@ namespace ProfessorsSSU
 
         private void OkButton_Click(object sender, RoutedEventArgs e)
         {
+            if (!ValidateFields())
+            {
+                // якщо не всі поля заповнені - повідомляємо користувача про це
+                MessageBox.Show("Переконайтеся, що всі поля заповнені!", "Помилка введення даних", MessageBoxButton.OK, MessageBoxImage.Error);
+                return; 
+            }
+
             // зчитуємо облікові дані користувача
             Editor editor = new Editor 
             {
@@ -34,12 +41,15 @@ namespace ProfessorsSSU
 
                 if (authResult)
                 {
+                    // якщо авторизація пройшла успішно - показуємо інструменти адміністратора
+                    // та повідомляємо користувача про успіх
                     MessageBox.Show("Авторизація пройшла успішно!", "", MessageBoxButton.OK, MessageBoxImage.Information);
                     this.AfterSuccessAuthAction();
                     this.Close();
                 }
                 else 
                 {
+                    // інакше повідомляємо про некоректні облікові дані
                     MessageBox.Show("Некоректний логін або пароль!", "Помилка!", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             } 
