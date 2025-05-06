@@ -36,7 +36,7 @@
             <Button  x:Name="AddProfessorButton" Content="Додати" FontSize="16" DockPanel.Dock="Top" Height="40" Width="140" Margin ="30,20,30,0" Click="AddProfessorButton_Click"/>
             <Button x:Name="EditProfessorButton" Content="Редагувати" FontSize="16" DockPanel.Dock="Top" Height="40" Margin ="30,20,30,0" Click="EditProfessorButton_Click"/>
             <Button x:Name="DeleteProfessorButton" Content="Видалити" FontSize="16" DockPanel.Dock="Top" Height="40" Width="140" Margin ="30,20,30,0" Click="DeleteProfessorButton_Click"/>
-            <Button x:Name="SaveToWordButton" Content="Зберегти у Word" FontSize="16" DockPanel.Dock="Bottom" Height="40" Width="140" Margin ="30,0,30,30"/>
+            <Button x:Name="SaveToWordButton" Content="Зберегти у Word" FontSize="16" DockPanel.Dock="Bottom" Height="40" Width="140" Margin ="30,0,30,30" Click="SaveToWordButton_Click"/>
         </DockPanel>
         <DockPanel Background="#FFF0F0F0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,160,200,0">
 

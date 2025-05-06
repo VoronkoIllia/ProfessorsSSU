@@ -33,6 +33,7 @@ namespace ProfessorsSSU
             // Register Services
             services.AddSingleton<IProfessorService, ProfessorService>();
             services.AddSingleton<IAuthService, AuthService>();
+            services.AddSingleton<IWordService, WordService>();
 
             // Register Views
             services.AddSingleton<InfoProfessorForm>();

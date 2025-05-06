@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using ProfessorsSSU.Models;
 using System.Collections.ObjectModel;
+using Microsoft.Win32;
 
 namespace ProfessorsSSU
 {
@@ -13,6 +14,7 @@ namespace ProfessorsSSU
     {
         private readonly IProfessorService _professorService;
         private readonly IAuthService _authService;
+        private readonly IWordService _wordService;
 
         private bool isEditorAuthorized;
 
@@ -29,13 +31,14 @@ namespace ProfessorsSSU
             public required string Display { get; set; }
             public bool? Value { get; set; }
         }
-        public InfoProfessorForm(IProfessorService professorService, IAuthService authService)
+        public InfoProfessorForm(IProfessorService professorService, IAuthService authService, IWordService wordService)
         {
             InitializeComponent();
 
 
             this._professorService = professorService;
             this._authService = authService;
+            this._wordService = wordService;
 
             this.HasAcademicRankComboBox.ItemsSource = hasAcademicRankOptions;
             this.HasAcademicRankComboBox.SelectedValue = null;
@@ -171,6 +174,29 @@ namespace ProfessorsSSU
             this.DeleteProfessorButton.Visibility = Visibility.Visible;
         }
 
+        private void SaveToWordButton_Click(object sender, RoutedEventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.FileName = "Відібрані_викладачі.docx";
+
+            if (saveFileDialog.ShowDialog() == true)
+            {
+                string saveFilePath = saveFileDialog.FileName; //отримуємо шлях збереження файлу
+                
+                try 
+                {
+                    // зберігаємо відібрані дані про викладачів у файл 
+                    _wordService.SaveProfessorsToWordFile(saveFilePath, this.FilteredProfessors);
+                }
+                catch(Exception ex) 
+                {
+                    // якщо сталася помилка - сповіщаємо користувача через діалогове вікно
+                    MessageBox.Show(ex.Message, "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                
+            }
+        }
+
         private void HideEditorTools()
         {
             this.AuthButton.Content = "Авторизуватися";
@@ -178,5 +204,6 @@ namespace ProfessorsSSU
             this.EditProfessorButton.Visibility = Visibility.Hidden;
             this.DeleteProfessorButton.Visibility = Visibility.Hidden;
         }
+
     }
 }
