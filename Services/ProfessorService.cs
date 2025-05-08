@@ -49,6 +49,7 @@ namespace ProfessorsSSU.Services
                 return false;
             }
 
+            newProfessorData.Id = professor.Id; 
             _appDbContext.Entry(professor).CurrentValues.SetValues(newProfessorData);
             _appDbContext.SaveChanges();
             return true;
